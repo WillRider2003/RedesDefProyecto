@@ -2,18 +2,7 @@
 
 Este documento resume el trabajo realizado para el examen parcial, incluyendo las decisiones de diseño, lo que se implementó y cómo está organizado el repositorio.
 
-## Qué se hizo para el parcial
-
-### Presentación
-
-Se prepararon dos versiones:
-
-- Una generada con NotebookLM usando como fuentes los audios de Clase 7 SDN, el AVZ07 y el PDF con las críticas del profesor. Quedó en 13 diapositivas cubriendo R1 al R5 con métricas cuantitativas.
-- Una en LaTeX Beamer (`NuevoPPT_G5_TEL354.tex`) con la misma estructura pero más control sobre el formato. Está lista para compilar en Overleaf.
-
-La versión de NotebookLM incorpora las correcciones que pidió el profesor: separar Switch y ONOS como actores distintos en el diagrama de secuencia, incluir las reglas de arranque de T0, agregar el plan de direccionamiento por VLAN, y cubrir R4 y R5 que faltaban en la versión anterior.
-
-### Código
+## Código implementado
 
 Se implementaron cuatro módulos como apps de ONOS (Java + OSGi), que corresponden a los módulos M1, M2, M4 y M5 del HLD:
 
