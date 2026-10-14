@@ -2,6 +2,12 @@
 
 Este documento resume el trabajo realizado para el examen parcial, incluyendo las decisiones de diseño, lo que se implementó y cómo está organizado el repositorio.
 
+## Sobre el código
+
+El código está escrito como una ONOS app real en Java con OSGi. No es pseudocódigo ni simulación — si se compila y se despliega en un ONOS con switches OpenFlow reales o en Mininet con OVS, funciona. Las reglas OpenFlow, las tablas, las prioridades y los timeouts son los mismos que están en el HLD y en la presentación.
+
+Lo que tiene pendiente para producción completa es básicamente tres cosas: el cliente RADIUS en M1 tiene un stub para pruebas en Mininet (devuelve "alumno" por defecto en vez de hacer la llamada RADIUS real), el ID del switch de borde en M5 está hardcodeado para Mininet y en producción vendría del NetworkConfig de ONOS, y los módulos M3, M6 y M7 no están porque ONOS ya trae gestión de topología integrada y los otros dos quedan fuera del alcance del parcial.
+
 ## Código implementado
 
 Se implementaron cuatro módulos como apps de ONOS (Java + OSGi), que corresponden a los módulos M1, M2, M4 y M5 del HLD:
