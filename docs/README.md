@@ -2,13 +2,11 @@
 
 Este documento resume el trabajo realizado para el examen parcial, incluyendo las decisiones de diseño, lo que se implementó y cómo está organizado el repositorio.
 
----
-
 ## Qué se hizo para el parcial
 
 ### Presentación
 
-Se prepararon dos versiones de la presentación:
+Se prepararon dos versiones:
 
 - Una generada con NotebookLM usando como fuentes los audios de Clase 7 SDN, el AVZ07 y el PDF con las críticas del profesor. Quedó en 13 diapositivas cubriendo R1 al R5 con métricas cuantitativas.
 - Una en LaTeX Beamer (`NuevoPPT_G5_TEL354.tex`) con la misma estructura pero más control sobre el formato. Está lista para compilar en Overleaf.
@@ -26,8 +24,6 @@ Se implementaron cuatro módulos como apps de ONOS (Java + OSGi), que correspond
 **M4ThreatDetector** — cubre dos requerimientos. Para R3 escucha alertas de Suricata por socket y genera un Flow-Mod en T2 con idle_timeout=300 y hard_timeout=3600. Para R4 hace polling de las estadísticas de puerto cada segundo y si el promedio supera 10,000 pkt/s durante 5 segundos consecutivos aplica bloqueo gradual (rate-limit para tráfico leve, drop para moderado y grave).
 
 **M5PolicyEngine** — gestiona la seguridad en el switch de borde. Instala una whitelist de puertos (TCP 80, 443, 22, 25) para el tráfico entrante desde la WAN y bloquea todo lo demás por defecto. La lista negra de IPs se puede actualizar en tiempo real sin reiniciar el controlador, lo que permite que Suricata en la interfaz WAN agregue bloqueos en menos de 200ms desde la detección.
-
----
 
 ## Decisiones de diseño relevantes
 
@@ -51,8 +47,6 @@ Si T0 empieza vacía, en OpenFlow el comportamiento por defecto cuando no hay ma
 
 OpenFlow trabaja sobre cabeceras L2/L3/L4. Ataques encubiertos como malware C2 beaconing, covert channels o lateral movement usan puertos y protocolos legítimos, entonces OpenFlow por sí solo no los distingue del tráfico normal. Suricata hace inspección de payload y puede detectar patrones de comportamiento que las cabeceras no revelan.
 
----
-
 ## Estructura del código
 
 ```
@@ -64,8 +58,6 @@ src/main/java/org/pucp/tel354/g5/
 ```
 
 El módulo M3 (TopologyManager) no se implementó porque ONOS ya trae gestión de topología integrada via LLDP. M6 (AdminConsole) y M7 (ReportingService) son interfaces de administración que quedan fuera del alcance del parcial.
-
----
 
 ## Métricas del diseño
 
