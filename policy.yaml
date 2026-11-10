@@ -1,0 +1,14 @@
+# Política de control de acceso por roles (RBAC).
+# hosts: rol de cada host según su IP en la red de datos.
+# rules: qué rol de origen puede comunicarse con qué rol de destino.
+#        Lo que no aparece en rules se deniega (regla DROP temporal).
+hosts:
+  10.0.0.1: { name: h1, role: administrador }
+  10.0.0.2: { name: h2, role: alumno }
+  10.0.0.3: { name: h3, role: servidor }
+  10.0.0.4: { name: h4, role: invitado }
+
+rules:
+  - { src: administrador, dst: servidor, allow: true }
+  - { src: alumno, dst: servidor, allow: true }
+  - { src: invitado, dst: servidor, allow: true }
